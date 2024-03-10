@@ -1,0 +1,88 @@
+{
+  "name": "nuxt-uswds",
+  "version": "1.0.0",
+  "description": "USWDS integration for Nuxt.js",
+  "keywords": [
+    "nuxt",
+    "module",
+    "nuxt-module",
+    "vue",
+    "uswds",
+    "vue-uswds"
+  ],
+  "homepage": "https://github.com/patrickcate/nuxt-uswds",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patrickcate/nuxt-uswds"
+  },
+  "bugs": {
+    "url": "https://github.com/patrickcate/nuxt-uswds/issues"
+  },
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Patrick Cate",
+      "url": "https://github.com/patrickcate"
+    }
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest watch --disable-console-intercept",
+    "prepare": "husky",
+    "commit": "cz"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.10.3",
+    "defu": "^6.1.4",
+    "scule": "^1.3.0"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxt/eslint-config": "^0.2.0",
+    "@nuxt/module-builder": "^0.5.5",
+    "@nuxt/schema": "^3.10.3",
+    "@nuxt/test-utils": "^3.11.0",
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.19",
+    "changelogen": "^0.5.5",
+    "commitizen": "^4.3.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-prettier-vue": "^5.0.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "nuxt": "^3.10.3",
+    "playwright-core": "^1.42.1",
+    "prettier": "^3.2.5",
+    "vitest": "^1.3.1",
+    "vue-uswds": "^1.7.1"
+  },
+  "peerDependencies": {
+    "vue-uswds": "^1.7.1"
+  },
+  "lint-staged": {
+    "*.{js,mjs,cjs,ts,vue}": [
+      "npm run lint"
+    ]
+  }
+}
