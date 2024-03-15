@@ -20,10 +20,30 @@ export interface VueUswdsOptions {
 }
 
 export interface ModuleOptions {
+  /**
+   * Whether to auto-import Vue USWDS base components.
+   * @default true
+   */
   autoImportBaseComponents?: boolean;
+  /**
+   * Whether to auto-import Vue USWDS regular components.
+   * @default true
+   */
   autoImportComponents?: boolean;
+  /**
+   * Optional prefix to add to Vue USWDS base components.
+   * @default ''
+   */
   baseComponentPrefix?: string;
+  /**
+   * Optional prefix to add to Vue USWDS regular components.
+   * @default ''
+   */
   componentPrefix?: string;
+  /**
+   * Any Vue USWDS options you want to initialize the plugin with.
+   * @default {}
+   */
   vueUswds?: VueUswdsOptions;
 }
 
