@@ -45,3 +45,10 @@ jobs:
 
       - name: Run tests
         run: npm run test
+
+      - name: Automatically merge dependabot updates
+        if: github.event_name == 'pull_request'
+        uses: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          target: minor
+          github-token: ${{ secrets.DEPENDABOT_AUTOMERGE }}
