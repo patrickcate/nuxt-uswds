@@ -88,12 +88,12 @@ npm run dev:build
 # Run ESLint
 npm run lint
 
+# Type check
+npm run types
+
 # Run Vitest
 npm run test
 npm run test:watch
-
-# Release new version
-npm run release
 ```
 
 <!-- Badges -->
