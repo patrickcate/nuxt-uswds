@@ -8,16 +8,25 @@ on:
       - alpha
       - beta
 
+permissions:
+  contents: read
+
 jobs:
   release:
     if: contains(github.event.head_commit.message, 'skip release') == false
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.SEMANTIC_RELEASE_GH_TOKEN }}
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -26,6 +35,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Verify the integrity of installed dependencies
+        run: npm audit signatures
 
       - name: Release
         env:
