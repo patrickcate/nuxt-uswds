@@ -3,6 +3,7 @@ import {
   addPlugin,
   createResolver,
   addComponent,
+  addTypeTemplate,
 } from '@nuxt/kit';
 import { camelCase } from 'scule';
 import { defu } from 'defu';
@@ -20,10 +21,30 @@ export interface VueUswdsOptions {
 }
 
 export interface ModuleOptions {
+  /**
+   * Whether to auto-import Vue USWDS base components.
+   * @default true
+   */
   autoImportBaseComponents?: boolean;
+  /**
+   * Whether to auto-import Vue USWDS regular components.
+   * @default true
+   */
   autoImportComponents?: boolean;
+  /**
+   * Optional prefix to add to Vue USWDS base components.
+   * @default ''
+   */
   baseComponentPrefix?: string;
+  /**
+   * Optional prefix to add to Vue USWDS regular components.
+   * @default ''
+   */
   componentPrefix?: string;
+  /**
+   * Any Vue USWDS options you want to initialize the plugin with.
+   * @default {}
+   */
   vueUswds?: VueUswdsOptions;
 }
 
@@ -44,6 +65,8 @@ export default defineNuxtModule<ModuleOptions>({
     vueUswds: {},
   },
   setup(options, nuxt) {
+    const resolver = createResolver(import.meta.url);
+
     nuxt.options.runtimeConfig.public.nuxtUswds = defu(
       nuxt.options.runtimeConfig.public.nuxtUswds,
       options,
@@ -87,7 +110,10 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
-    const resolver = createResolver(import.meta.url);
+    addTypeTemplate({
+      src: resolver.resolve('./global.d.ts'),
+      filename: 'types/vue-uswds.d.ts',
+    });
 
     // Do not add the extension since the `.ts` will be transpiled to
     // `.mjs` after `npm run prepack`
