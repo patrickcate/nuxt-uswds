@@ -8,17 +8,12 @@
     { "name": "alpha", "prerelease": true }
   ],
   "plugins": [
-    [
-      "@semantic-release/commit-analyzer",
-      {
-        "config": "@commitlint/config-conventional"
-      }
-    ],
+    ["@semantic-release/commit-analyzer"],
     "@semantic-release/release-notes-generator",
     [
       "@semantic-release/changelog",
       {
-        "changelogTitle": "Changelog"
+        "changelogTitle": "# Changelog"
       }
     ],
     "@semantic-release/npm",
