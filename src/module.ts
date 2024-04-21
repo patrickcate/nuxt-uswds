@@ -111,8 +111,9 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     addTypeTemplate({
-      src: resolver.resolve('./global.d.ts'),
       filename: 'types/vue-uswds.d.ts',
+      getContents: () =>
+        `declare module 'vue-uswds/core';\ndeclare module 'vue-uswds/components';`,
     });
 
     // Do not add the extension since the `.ts` will be transpiled to
