@@ -39,6 +39,12 @@ jobs:
       - name: Verify the integrity of installed dependencies
         run: npm audit signatures
 
+      - name: Build playground
+        run: npm run dev:prepare
+
+      - name: Build module
+        run: npm run prepack
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GH_TOKEN }}
