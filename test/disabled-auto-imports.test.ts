@@ -16,34 +16,32 @@ describe('disabled auto-imports', async () => {
     const nuxtUswdsOptions = await page
       .locator('.test-nuxt-uswds-options')
       .textContent();
-    await expect(nuxtUswdsOptions).toContain(
-      `"autoImportBaseComponents": false`,
-    );
-    await expect(nuxtUswdsOptions).toContain(`"autoImportComponents": false`);
-    await expect(nuxtUswdsOptions).toContain(`"baseComponentPrefix": ""`);
-    await expect(nuxtUswdsOptions).toContain(`"componentPrefix": ""`);
+    expect(nuxtUswdsOptions).toContain(`"autoImportBaseComponents": false`);
+    expect(nuxtUswdsOptions).toContain(`"autoImportComponents": false`);
+    expect(nuxtUswdsOptions).toContain(`"baseComponentPrefix": ""`);
+    expect(nuxtUswdsOptions).toContain(`"componentPrefix": ""`);
 
     const vueUswdsOptions = await page
       .locator('.test-vue-uswds-options')
       .textContent();
-    await expect(vueUswdsOptions).toContain(`"prefixSeparator": "_"`);
-    await expect(vueUswdsOptions).toContain(`"gridNamespace": "tg-"`);
-    await expect(vueUswdsOptions).toContain(`"utilityNamespace": "tu-"`);
-    await expect(vueUswdsOptions).toContain(`"imagePath": "/test-images/img"`);
-    await expect(vueUswdsOptions).toContain(
+    expect(vueUswdsOptions).toContain(`"prefixSeparator": "_"`);
+    expect(vueUswdsOptions).toContain(`"gridNamespace": "tg-"`);
+    expect(vueUswdsOptions).toContain(`"utilityNamespace": "tu-"`);
+    expect(vueUswdsOptions).toContain(`"imagePath": "/test-images/img"`);
+    expect(vueUswdsOptions).toContain(
       `"svgSpritePath": "/test-assets/img/test-sprite.svg"`,
     );
-    await expect(vueUswdsOptions).toContain(`"mobileMenuBreakpoint": "10em"`);
-    await expect(vueUswdsOptions).toContain(`"footerNavBigBreakpoint": "20em"`);
+    expect(vueUswdsOptions).toContain(`"mobileMenuBreakpoint": "10em"`);
+    expect(vueUswdsOptions).toContain(`"footerNavBigBreakpoint": "20em"`);
 
     const usaTag = await page
       .locator('.test-usa-component UsaTag')
       .textContent();
-    await expect(usaTag).toContain('Test UsaTag');
+    expect(usaTag).toContain('Test UsaTag');
 
     const baseLink = await page
       .locator('.test-base-component BaseLink')
       .textContent();
-    await expect(baseLink).toContain('Test BaseLink');
+    expect(baseLink).toContain('Test BaseLink');
   });
 });
