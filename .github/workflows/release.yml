@@ -31,9 +31,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 18
+          node-version: 24
 
       - name: Install dependencies
+        run: npm install
+
+      - name: Install dependencies cleanly
         run: npm ci
 
       - name: Verify the integrity of installed dependencies
