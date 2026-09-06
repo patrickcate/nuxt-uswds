@@ -28,26 +28,35 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/types.d.ts",
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
     }
   },
-  "main": "./dist/module.cjs",
+  "main": "./dist/module.mjs",
+  "types": "./dist/types.d.mts",
   "files": [
     "dist"
   ],
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/types.d.mts"
+      ]
+    }
+  },
   "scripts": {
     "prepack": "nuxt-module-build build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "lint": "eslint --fix --ext .js,.cjs,.mjs,.ts,.vue .",
+    "build:module": "nuxt-module-build build",
+    "build:playground": "nuxi build playground",
+    "prepare": "husky",
+    "commit": "cz",
+    "lint": "eslint --fix",
     "test": "vitest run",
     "test:watch": "vitest watch --disable-console-intercept",
     "types": "tsc --noEmit",
-    "prepare": "husky",
-    "commit": "cz",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
