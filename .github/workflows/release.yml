@@ -46,7 +46,7 @@ jobs:
         run: npm run dev:prepare
 
       - name: Build module
-        run: npm run prepack
+        run: npm run build:module
 
       - name: Release
         env:
