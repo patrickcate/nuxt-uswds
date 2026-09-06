@@ -53,12 +53,12 @@ The module supports the following options. They can be added to your `nuxt.confi
 {
   modules: [
     [
-      'nuxt-uswds'',
+      'nuxt-uswds',
       {
         // Modules options...
       },
     ],
-  ]
+  ];
 }
 ```
 
